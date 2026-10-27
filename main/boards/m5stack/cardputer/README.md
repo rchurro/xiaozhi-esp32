@@ -57,6 +57,16 @@ If the mic level is too low or clips, adjust `AUDIO_MIC_GAIN` in `config.h`.
 python scripts/build.py m5stack/cardputer
 ```
 
+Build with the tagged ESP-IDF v6.1 (`espressif/idf:v6.1`). The moving
+`release-v6.1` branch (seen at `v6.1-829-g9a97f6c54ec`) breaks certificate
+bundle verification: every HTTPS connection fails with "PSA signature
+verification failed" / `mbedtls_ssl_handshake returned -0x3000`.
+
+```bash
+docker run --rm -v "$PWD":/project -w /project espressif/idf:v6.1 \
+  python scripts/build.py m5stack/cardputer
+```
+
 ## Flash
 
 ```bash
@@ -71,4 +81,6 @@ python -m esptool --chip esp32s3 -b 460800 -p PORT \
 ```
 
 Replace `PORT` with the serial device (for example `/dev/cu.usbmodem1101`).
+This writes the individual images and keeps saved WiFi; writing
+`merged-binary.bin` at 0x0 instead erases the NVS partition too.
 To enter download mode, hold G0 while plugging in USB.
