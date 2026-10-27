@@ -64,6 +64,10 @@ public:
 
 private:
     LcdDisplay* display_;
+    // The UI draws on its own LVGL screen so it never deletes the display's
+    // own widgets; the previous screen is restored when the UI is destroyed.
+    lv_obj_t* screen_ = nullptr;
+    lv_obj_t* previous_screen_ = nullptr;
     WifiConfigState state_;
     bool is_active_;
     ConnectCallback connect_callback_;
@@ -92,6 +96,11 @@ private:
     // Display constants
     static constexpr int MAX_VISIBLE_ITEMS = 4;
     static constexpr int MAX_INPUT_LENGTH = 64;
+
+    // Create and load this UI's screen (called once from Start*)
+    void OpenScreen();
+    // Delete all children of this UI's screen before redrawing it
+    lv_obj_t* ClearScreen();
 
     // State handlers
     void StartScanning();
