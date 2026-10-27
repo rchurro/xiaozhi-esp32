@@ -51,6 +51,20 @@ If the mic level is too low or clips, adjust `AUDIO_MIC_GAIN` in `config.h`.
 | `W` on the WiFi config screen | Enter WiFi credentials on the keyboard |
 | `S` on the WiFi config screen | Pick a saved network |
 
+## Using a self-hosted server
+
+The firmware talks to the server set by `CONFIG_OTA_URL` (upstream default)
+unless a custom OTA URL is saved on the device. To set one without
+rebuilding:
+
+1. Enter WiFi setup: on first boot it starts automatically; otherwise press
+   BOOT while the startup screen is showing.
+2. The keyboard WiFi screen and the setup hotspot (`Xiaozhi-XXXX`) are both
+   active. From a phone, join the hotspot and open http://192.168.4.1.
+3. On the **Advanced** tab, enter the server's OTA URL (for
+   xiaozhi-esp32-server: `http(s)://<host>/xiaozhi/ota/`) and save.
+4. Enter WiFi on either the keyboard (`W`) or the web page.
+
 ## Build
 
 ```bash

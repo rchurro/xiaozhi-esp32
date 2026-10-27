@@ -296,6 +296,10 @@ elseif(CONFIG_BOARD_TYPE_M5STACK_CARDPUTER)
     set(BUILTIN_TEXT_FONT font_noto_sans_basic_20_4)
     set(BUILTIN_ICON_FONT font_material_symbols_20_4)
     set(DEFAULT_EMOJI_COLLECTION noto-color-emoji_32)
+    # Shared with m5stack/cardputer-adv rather than copied: same 4x14 key layout and screen,
+    # so the keyboard WiFi/server setup UI and key types are reused as-is.
+    list(APPEND SOURCES "boards/m5stack/cardputer-adv/wifi_config_ui.cc")
+    list(APPEND INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/boards/m5stack/cardputer-adv)
 elseif(CONFIG_BOARD_TYPE_M5STACK_CARDPUTER_ADV)
     set(BOARD_DIR "m5stack/cardputer-adv")
     set(BUILTIN_TEXT_FONT font_noto_sans_basic_20_4)

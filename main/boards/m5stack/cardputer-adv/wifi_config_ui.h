@@ -1,7 +1,7 @@
 #ifndef WIFI_CONFIG_UI_H
 #define WIFI_CONFIG_UI_H
 
-#include "tca8418_keyboard.h"
+#include "cardputer_keyboard.h"
 #include "display/lcd_display.h"
 #include <string>
 #include <vector>
